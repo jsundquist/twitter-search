@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="TwitterSearcher">
+<head>
+	
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-resource.min.js"></script>
+	<script src="lib/angular-ui.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/filters.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/angular-ui.css">
+
+</head>
+<body>
+	<div ng-controller="TwitterCtrl">
+		<form class="form-horizontal">
+			<input type="text" ng-model="searchTerm">
+			<button class="btn" ng-click="doSearch()"><i class="icon-search icon-black"></i>&nbsp;Search</button>
+			<div class="pull-right">
+				<button class="btn" ng-model="pager" ng-click="prevPage(pager)" ng-disabled="noback"><i class="icon-arrow-left"></i>&nbsp;Previous Page</button>
+				<span>[ {{pager}} ]</span>
+				<button class="btn" ng-model="pager" ng-click="nextPage(pager)">Next Page&nbsp;<i class="icon-arrow-right"></i></button>
+			</div>
+		</form>
+		<table class="table table-striped">
+			<tr ng-repeat="tweet in twitterResult.results">
+				<td><img ng-src="{{tweet.profile_image_url}}"></td>
+				<td><a href="http://www.twitter.com/{{tweet.from_user}}" target="_blank">{{tweet.from_user_name}}</a></td>
+				<td>{{tweet.text}}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
