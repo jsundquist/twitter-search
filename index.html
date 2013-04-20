@@ -29,7 +29,8 @@
 			<tr ng-repeat="tweet in twitterResult.results">
 				<td><img ng-src="{{tweet.profile_image_url}}"></td>
 				<td><a href="http://www.twitter.com/{{tweet.from_user}}" target="_blank">{{tweet.from_user_name}}</a></td>
-				<td>{{tweet.text}}</td>
+				<td ng-bind-html-unsafe='tweet.text | addLink'></td>
+				<!-- <td><span ng-bind-html="directiveLink"></span>{{tweet.text | addLink}}</td> -->
 			</tr>
 		</table>
 	</div>
